@@ -69,6 +69,36 @@ class S {
       args: [],
     );
   }
+
+  /// `成员`
+  String get studio_member {
+    return Intl.message(
+      '成员',
+      name: 'studio_member',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `资源`
+  String get studio_resource {
+    return Intl.message(
+      '资源',
+      name: 'studio_resource',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `浏览量`
+  String get studio_read_count {
+    return Intl.message(
+      '浏览量',
+      name: 'studio_read_count',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

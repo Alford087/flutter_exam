@@ -23,6 +23,9 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "studio_focus": MessageLookupByLibrary.simpleMessage("关注"),
-        "studio_page_name": MessageLookupByLibrary.simpleMessage("")
+        "studio_member": MessageLookupByLibrary.simpleMessage("成员"),
+        "studio_page_name": MessageLookupByLibrary.simpleMessage(""),
+        "studio_read_count": MessageLookupByLibrary.simpleMessage("浏览量"),
+        "studio_resource": MessageLookupByLibrary.simpleMessage("资源")
       };
 }

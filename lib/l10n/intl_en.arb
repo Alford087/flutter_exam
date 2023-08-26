@@ -1,5 +1,7 @@
 {
   "studio_page_name": "",
-
-  "studio_focus": "关注"
+  "studio_focus": "关注",
+  "studio_member": "成员",
+  "studio_resource": "资源",
+  "studio_read_count": "浏览量"
 }

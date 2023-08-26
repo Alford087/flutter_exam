@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'generated/l10n.dart';
+import 'logic/logic_studio.dart';
+import 'app/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -65,37 +67,58 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             // 第二个布局：头部信息
             padding: EdgeInsets.all(16),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 30,
-                  backgroundImage: AssetImage('assets/avatar.png'),
-                ),
-                Padding(
-                    padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
-                    child: Column(
-                      children: [
-                        Text(
-                          '吴清风名师工作室',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        Text(
-                          '一级标签 · 二级标签 ·三级标签',
-                          style: TextStyle(fontSize: 11),
-                        ),
-                        Text(
-                          '成员 30 | 资源 90 | 浏览量 1564',
-                          style: TextStyle(fontSize: 11),
-                        ),
-                      ],
-                    )),
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(S.of(context).studio_focus),
-                  ),
-                ),
-              ],
+            child: FutureBuilder<StudioInfo>(
+              future: fetchStudioInfo(),
+              builder: (context, snapshot) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      radius: 30,
+                      foregroundImage: NetworkImage(snapshot.data!.avatarUrl),
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(left: 16),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              textAlign: TextAlign.left,
+                              snapshot.data!.getStudioName(),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Color(CustomColors.studio_namecolor)),
+                            ),
+                            Text(
+                              textAlign: TextAlign.left,
+                              snapshot.data!.getSubTagString(),
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Color(CustomColors.sub_text_color),
+                              ),
+                            ),
+                            Text(
+                              textAlign: TextAlign.left,
+                              snapshot.data!.getStudioSubTitle(
+                                  S.of(context).studio_member,
+                                  S.of(context).studio_resource,
+                                  S.of(context).studio_read_count),
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  color: Color(CustomColors.sub_text_color)),
+                            ),
+                          ],
+                        )),
+                    Expanded(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text(S.of(context).studio_focus),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
           // 第三个布局：可滑动的Tab布局
