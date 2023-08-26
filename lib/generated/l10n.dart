@@ -99,6 +99,36 @@ class S {
       args: [],
     );
   }
+
+  /// `全部`
+  String get studio_article_all {
+    return Intl.message(
+      '全部',
+      name: 'studio_article_all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `公告`
+  String get studio_article_notice {
+    return Intl.message(
+      '公告',
+      name: 'studio_article_notice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `文章`
+  String get studio_article_book {
+    return Intl.message(
+      '文章',
+      name: 'studio_article_book',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

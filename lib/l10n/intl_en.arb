@@ -3,5 +3,9 @@
   "studio_focus": "关注",
   "studio_member": "成员",
   "studio_resource": "资源",
-  "studio_read_count": "浏览量"
+  "studio_read_count": "浏览量",
+
+  "studio_article_all": "全部",
+  "studio_article_notice": "公告",
+  "studio_article_book": "文章"
 }

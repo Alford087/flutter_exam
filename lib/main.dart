@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'generated/l10n.dart';
 import 'logic/logic_studio.dart';
+import 'logic/logic_article.dart';
 import 'app/colors.dart';
 
 void main() {
@@ -45,7 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).studio_page_name),
+        title: Text(S
+            .of(context)
+            .studio_page_name),
         leading: IconButton(
           icon: Image.asset("images/drawable/icon_back.png"),
           color: Colors.white,
@@ -101,9 +104,15 @@ class _MyHomePageState extends State<MyHomePage> {
                             Text(
                               textAlign: TextAlign.left,
                               snapshot.data!.getStudioSubTitle(
-                                  S.of(context).studio_member,
-                                  S.of(context).studio_resource,
-                                  S.of(context).studio_read_count),
+                                  S
+                                      .of(context)
+                                      .studio_member,
+                                  S
+                                      .of(context)
+                                      .studio_resource,
+                                  S
+                                      .of(context)
+                                      .studio_read_count),
                               style: TextStyle(
                                   fontSize: 11,
                                   color: Color(CustomColors.sub_text_color)),
@@ -113,7 +122,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     Expanded(
                       child: TextButton(
                         onPressed: () {},
-                        child: Text(S.of(context).studio_focus),
+                        child: Text(S
+                            .of(context)
+                            .studio_focus),
                       ),
                     ),
                   ],
@@ -129,23 +140,37 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   TabBar(
                     tabs: [
-                      Tab(text: 'Tab 1'),
-                      Tab(text: 'Tab 2'),
-                      Tab(text: 'Tab 3'),
+                      Tab(text: S
+                          .of(context)
+                          .studio_article_all),
+                      Tab(text: S
+                          .of(context)
+                          .studio_article_notice),
+                      Tab(text: S
+                          .of(context)
+                          .studio_article_book),
                     ],
                   ),
                   Expanded(
                     child: TabBarView(
                       children: [
+                        Container(
+                            child: FutureBuilder<List<ArticleItem>>(
+                              future: fetchArticleList(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<List<ArticleItem>> snapshot) {
+                                return ListView.builder(
+                                  itemCount: snapshot.data!.length,
+                                  itemBuilder: (context, index) {
+                                    return ListTile(
+                                      title: Text(snapshot.data![index].title),
+                                    );
+                                  },
+                                );
+                              },
+                            ))
                         // 第一个Tab对应的布局
-                        ListView.builder(
-                          itemCount: 20,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text('Item $index'),
-                            );
-                          },
-                        ),
+                        ,
                         // 第二个Tab对应的布局
                         ListView.builder(
                           itemCount: 20,
